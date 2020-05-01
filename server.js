@@ -11,8 +11,18 @@ const session = require("express-session");
 const init = require("./passport-config");
 init(
   passport,
-  (email) => users.find((user) => user.email === email),
-  (id) => users.find((user) => user.id === id)
+  (email) => {
+    console.log("bla email" + email);
+
+    users.find((user) => {
+      //console.log(user.email + "bla");
+      user.email === email;
+    });
+  },
+  (id) =>
+    users.find((user) => {
+      user.id === id;
+    })
 );
 
 const app = express();
