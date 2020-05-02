@@ -9,20 +9,25 @@ function init(passport, getUserByEmail, getUserById) {
     console.log(email);
 
     if (user == null) {
-      return done(null, false, { message: "no user found" });
+      return done(null, false, { message: "no user whit that email found" });
     }
 
     try {
-      console.log("bla");
+      // console.log(password);
+      // console.log(user.password);
 
       if (await bcrypt.compare(password, user.password)) {
-        console.log(user.password);
+        // console.log(user.password);
 
         return done(null, user);
       } else {
-        return done(null, false, { maessage: "password incorect" });
+        // console.log("else");
+
+        return done(null, false, { message: "password incorect" });
       }
     } catch (error) {
+      // console.log("eror");
+
       done(error);
     }
   };
