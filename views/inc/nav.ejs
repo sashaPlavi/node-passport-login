@@ -1,0 +1,44 @@
+<div style="display: flex; text-align: right; background-color: #333;">
+  <% if ( !islogin ) { %>
+
+  <div>
+    <h3>
+      <a
+        style="
+          text-decoration: none;
+          padding: 1rem;
+
+          color: #f4f4f4;
+          border: 1px #f4f4f4;
+        "
+        href="/register"
+        >Register</a
+      >
+    </h3>
+  </div>
+  <% } %> <% if ( !islogin ) { %>
+
+  <div>
+    <h3>
+      <a
+        style="
+          text-decoration: none;
+          padding: 1rem;
+
+          color: #f4f4f4;
+          border: 1px #f4f4f4;
+        "
+        href="/login"
+        >Login</a
+      >
+    </h3>
+  </div>
+  <% } %> <% if ( islogin ) { %>
+
+  <div>
+    <form style="padding: 1rem;" action="/logout?_method=DELETE" method="POST">
+      <button type="submit">Logout</button>
+    </form>
+  </div>
+  <% } %>
+</div>

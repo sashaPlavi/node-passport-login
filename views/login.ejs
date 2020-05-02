@@ -1,4 +1,5 @@
-<a href="/" style="text-decoration: none;">Go Home</a>
+<%- include('./inc/nav.ejs' )%>
+
 <h1>login</h1>
 
 <%if (messages.error) { %> <%=messages.error%> <% }%>
@@ -14,5 +15,7 @@
   </div>
   <button type="submit">Login</button>
 </form>
+
+<h1><%= islogin %></h1>
 
 <a href="/register" style="text-decoration: none;">Register</a>

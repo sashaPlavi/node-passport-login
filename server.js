@@ -34,10 +34,13 @@ app.use(methodO("_method"));
 app.set("view-engine", "ejs");
 
 app.get("/", checkAuth, (req, res, next) => {
-  res.render("index.ejs", { name: req.user.name });
+  res.render("index.ejs", {
+    name: req.user.name,
+    islogin: req.isAuthenticated(),
+  });
 });
 app.get("/login", checkNotAuth, (req, res, next) => {
-  res.render("login.ejs", { name: "Sasha" });
+  res.render("login.ejs", { name: "Sasha", islogin: req.isAuthenticated() });
 });
 app.post(
   "/login",
@@ -48,7 +51,7 @@ app.post(
   })
 );
 app.get("/register", checkNotAuth, (req, res, next) => {
-  res.render("register.ejs", { name: "Sasha" });
+  res.render("register.ejs", { name: "Sasha", islogin: req.isAuthenticated() });
 });
 app.post("/register", async (req, res, next) => {
   try {
@@ -69,6 +72,7 @@ app.delete("/logout", (req, res, next) => {
   req.logOut();
   res.redirect("/login");
 });
+
 function checkAuth(req, res, next) {
   if (req.isAuthenticated()) {
     return next();
@@ -76,6 +80,7 @@ function checkAuth(req, res, next) {
     res.redirect("/login");
   }
 }
+
 function checkNotAuth(req, res, next) {
   if (req.isAuthenticated()) {
     res.redirect("/");
